@@ -147,7 +147,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/22/hello-world-1/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/22/cs50/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -161,7 +161,96 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2024/04/22/hello-world-1/" class="post-title-link" itemprop="url">hello world</a>
+            <a href="/2024/04/22/cs50/" class="post-title-link" itemprop="url">CS50's Introduction to AI with Python</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2024-04-22 23:42:08" itemprop="dateCreated datePublished" datetime="2024-04-22T23:42:08+08:00">2024-04-22</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2024-04-23 22:38:19" itemprop="dateModified" datetime="2024-04-23T22:38:19+08:00">2024-04-23</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>此博客是对该课程的一些概括， 用于本人复习</p>
+<h2 id="Search">Search</h2>
+<pre><code>大致讲述了几种搜索方式
+</code></pre>
+<h3 id="探索类">探索类</h3>
+<h4 id="较为基础的dfs与bfs我们略过">较为基础的<em>dfs</em>与<em>bfs</em>我们略过</h4>
+<h4 id="贪婪优先搜索-greedy-best-first-search">贪婪优先搜索(greedy best-first search)</h4>
+<pre><code>例子：二维迷宫探索
+    准备：将除墙外的每一块标记上该块走到goal需要的步数dist（该距离无视墙的阻碍）
+    执行：检测 I 所在的位置上下左右方向出墙外的块， 比较dist， 选择最小的前进
+
+    ps：应注意所有曾比较过的块都会在比较队列中， 除非他是最小的，否则每次都要将他和新块
+    做比较
+</code></pre>
+<h4 id="A-搜索（A-search）">A* 搜索（A* search）</h4>
+<pre><code>在贪婪优先搜索的基础上， 记录已经走过的步数cost
+例子：二维迷宫探索
+    准备：将除墙外的每一块标记上该块走到goal需要的步数dist（该距离无视墙的阻碍）
+    执行：有记录函数total(cost, dist)， 检测 I 所在的位置上下左右方向出墙外的块，将当
+    前状态的cost与四周块的dist相加， 计算该块的total值， 比较total值， 选择最小的前进
+
+    ps：应注意所有曾比较过的块都会在比较队列中， 除非他是最小的，否则每次都要将他和新块
+    做比较
+</code></pre>
+<h3 id="对抗类">对抗类</h3>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/04/22/hello-world/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="wybbb">
+      <meta itemprop="description" content="hello world!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wyb的blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/04/22/hello-world/" class="post-title-link" itemprop="url">hello world</a>
         </h2>
 
         <div class="post-meta">
@@ -266,9 +355,13 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">1</span>
+          <span class="site-state-item-count">2</span>
           <span class="site-state-item-name">日志</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-tags">
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">标签</span>
       </div>
   </nav>
 </div>
