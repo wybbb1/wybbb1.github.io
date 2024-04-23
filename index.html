@@ -178,7 +178,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-04-23 23:40:17" itemprop="dateModified" datetime="2024-04-23T23:40:17+08:00">2024-04-23</time>
+                <time title="修改时间：2024-04-23 23:41:09" itemprop="dateModified" datetime="2024-04-23T23:41:09+08:00">2024-04-23</time>
               </span>
 
           
@@ -192,29 +192,29 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>�˲����ǶԸÿγ̵�һЩ������ ���ڱ��˸�ϰ</p>
+          <p>此博客是对该课程的一些概括， 用于本人复习</p>
 <h2 id="Search">Search</h2>
-<pre><code>���½����˼���������ʽ
+<pre><code>大致讲述了几种搜索方式
 </code></pre>
-<h3 id="̽����">̽����</h3>
-<h4 id="��Ϊ������dfs��bfs�����Թ�">��Ϊ������<em>dfs</em>��<em>bfs</em>�����Թ�</h4>
-<h4 id="̰����������-greedy-best-first-search">̰����������(greedy best-first search)</h4>
-<p>���ӣ���ά�Թ�̽��<br>
-׼��������ǽ���ÿһ�����ϸÿ��ߵ�goal��Ҫ�Ĳ���dist���þ�������ǽ���谭��<br>
-ִ�У���� I ���ڵ�λ���������ҷ����ǽ��Ŀ飬 �Ƚ�dist�� ѡ����С��ǰ��</p>
-<pre><code>ps��Ӧע���������ȽϹ��Ŀ鶼���ڱȽ϶����У� ����������С�ģ�����ÿ�ζ�Ҫ�������¿�
-���Ƚ�
+<h3 id="探索类">探索类</h3>
+<h4 id="较为基础的dfs与bfs我们略过">较为基础的<em>dfs</em>与<em>bfs</em>我们略过</h4>
+<h4 id="贪婪优先搜索-greedy-best-first-search">贪婪优先搜索(greedy best-first search)</h4>
+<p>例子：二维迷宫探索<br>
+准备：将除墙外的每一块标记上该块走到goal需要的步数dist（该距离无视墙的阻碍）<br>
+执行：检测 I 所在的位置上下左右方向出墙外的块， 比较dist， 选择最小的前进</p>
+<pre><code>ps：应注意所有曾比较过的块都会在比较队列中， 除非他是最小的，否则每次都要将他和新块
+做比较
 </code></pre>
-<h4 id="A-������A-search��">A* ������A* search��</h4>
-<p>��̰�����������Ļ����ϣ� ��¼�Ѿ��߹��Ĳ���cost<br>
-���ӣ���ά�Թ�̽��<br>
-׼��������ǽ���ÿһ�����ϸÿ��ߵ�goal��Ҫ�Ĳ���dist���þ�������ǽ���谭��<br>
-ִ�У��м�¼����total(cost, dist)�� ��� I ���ڵ�λ���������ҷ����ǽ��Ŀ飬��<strong>��</strong><br>
-<strong>ǰ״̬</strong>��cost�����ܿ��dist��ӣ� ����ÿ��totalֵ�� �Ƚ�totalֵ�� ѡ����С��ǰ��</p>
-<pre><code>ps��Ӧע���������ȽϹ��Ŀ鶼���ڱȽ϶����У� ����������С�ģ�����ÿ�ζ�Ҫ�������¿�
-���Ƚ�
+<h4 id="A-搜索（A-search）">A* 搜索（A* search）</h4>
+<p>在贪婪优先搜索的基础上， 记录已经走过的步数cost<br>
+例子：二维迷宫探索<br>
+准备：将除墙外的每一块标记上该块走到goal需要的步数dist（该距离无视墙的阻碍）<br>
+执行：有记录函数total(cost, dist)， 检测 I 所在的位置上下左右方向出墙外的块，将<strong>当</strong><br>
+<strong>前状态</strong>的cost与四周块的dist相加， 计算该块的total值， 比较total值， 选择最小的前进</p>
+<pre><code>ps：应注意所有曾比较过的块都会在比较队列中， 除非他是最小的，否则每次都要将他和新块
+做比较
 </code></pre>
-<h3 id="�Կ���">�Կ���</h3>
+<h3 id="对抗类">对抗类</h3>
 
       
     </div>
