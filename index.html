@@ -237,7 +237,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-05-31 00:03:33" itemprop="dateModified" datetime="2024-05-31T00:03:33+08:00">2024-05-31</time>
+                <time title="修改时间：2024-06-03 22:14:24" itemprop="dateModified" datetime="2024-06-03T22:14:24+08:00">2024-06-03</time>
               </span>
 
           
@@ -258,8 +258,7 @@
 对于<strong>容器</strong>内的遍历我们可以使用迭代器：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Input_iterater, <span class="keyword">typename</span> T&gt;</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">cntvalappear</span><span class="params">(Input_iterater begin, Input_iterater end, T val)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> iter = begin; iter != end; iter++)&#123;</span><br><span class="line">        <span class="keyword">if</span> (*iter == val) sum++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><em>关键词：iterater</em></p>
-<pre><code>注意到，if语句仍有进一步模板化的方法：
-</code></pre>
+<p>注意到，if语句仍有进一步模板化的方法：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> Input_iterater, <span class="keyword">typename</span> Function&gt;</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">cntvalappear</span><span class="params">(Input_iterater begin, Input_iterater end, Function func)</span></span>&#123;</span><br><span class="line">    <span class="type">int</span> sum = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">auto</span> iter = begin; iter != end; iter++)&#123;</span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">func</span>(*iter)) sum++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sum;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">bool</span> <span class="title">isequal5</span><span class="params">(<span class="type">int</span> val)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> val == <span class="number">5</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; vec&#123;<span class="number">1</span>, <span class="number">9</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">5</span>, <span class="number">6</span>, <span class="number">8</span>&#125;;</span><br><span class="line">    cout &lt;&lt; <span class="built_in">cntvalappear</span>(vec.<span class="built_in">begin</span>(), vec.<span class="built_in">end</span>(), isequal5);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>现在我们可以自定义判断哪个数在vector里面出现啦。<br>
 然而其实不仅仅如此，你其实还可以判断vector中多少个数大于5，小于3等等。<br>
@@ -272,6 +271,16 @@
 auto func = [作用域内要传入的值] （参数）-&gt; 返回类型{<br>
 //body<br>
 }</p>
+<h2 id="move-semantics">move semantics</h2>
+<h3 id="l-value-and-r-value">l-value and r-value</h3>
+<p>左值，大致为有地址的变量，可以通过寻址定位。<br>
+右值，则是无地址的暂时变量，存活周期一般为一行。</p>
+<h3 id="move-semantics-std-move">move semantics(std::move())</h3>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a, b;</span><br><span class="line">a = b;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> a, b;</span><br><span class="line">a = std::<span class="built_in">move</span>(b);</span><br></pre></td></tr></table></figure>
+<p>当我们写第一种代码时，将左值等于左值时，程序会拷贝一份b的数据给a，从而浪费时间。<br>
+因此我们使用move将b变成暂时值，从而减少拷贝时间。<br>
+但是CS106L讲的并不是很清楚，对于move的机制仍存在疑问。</p>
 
       
     </div>
