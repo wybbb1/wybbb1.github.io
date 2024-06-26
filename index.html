@@ -306,7 +306,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-06-03 22:14:24" itemprop="dateModified" datetime="2024-06-03T22:14:24+08:00">2024-06-03</time>
+                <time title="修改时间：2024-06-25 12:58:17" itemprop="dateModified" datetime="2024-06-25T12:58:17+08:00">2024-06-25</time>
               </span>
 
           
@@ -320,7 +320,17 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="temsplate">temsplate&lt;&gt;</h2>
+          <h2 id="stringstream">stringstream</h2>
+<h3 id="ostringstream">ostringstream</h3>
+<p>大概算是一个存数据的仓库（缓冲区），不与console连接，可与其他程序做对接。</p>
+<p>常用函数：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">ostringstream <span class="title">oss</span><span class="params">(<span class="string">&quot;12345&quot;</span>, ostringstream::ate)</span><span class="comment">//&#x27;ate&#x27;使输入指针会移动到预输入内容后</span></span></span><br><span class="line"><span class="function"><span class="comment">//此时缓冲区内容：&quot;12345&quot;</span></span></span><br><span class="line"><span class="function">oss &lt;&lt; 32132</span>; <span class="comment">//不一定是要字符串输入，虽然最终都会转化为字符串存储在缓冲区中</span></span><br><span class="line"><span class="comment">//此时缓冲区内容：&quot;1234532132&quot;</span></span><br><span class="line">oss.<span class="built_in">str</span>(<span class="string">&quot;&quot;</span>); <span class="comment">//清空</span></span><br><span class="line"><span class="comment">//此时缓冲区内容：&quot;&quot; </span></span><br></pre></td></tr></table></figure>
+<p>ps：应该注意的是，oss并不是一种类似cout的媒介，它无法直接输出到console显示</p>
+<h3 id="istringstream">istringstream</h3>
+<p>取数据的媒介，其特点是能将输入的字符串内容匹配为用户需要的变量。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">istringstream <span class="title">iss</span><span class="params">(<span class="string">&quot;19.6&quot;</span>)</span></span>;<span class="comment">//向iss预先添加内容是必要的</span></span><br><span class="line"><span class="type">int</span> a, b;</span><br><span class="line">iss &gt;&gt; a &gt;&gt; b;</span><br><span class="line">cout &lt;&lt; a &lt;&lt; <span class="string">&quot; &quot;</span> &lt;&lt; b;</span><br></pre></td></tr></table></figure>
+<p>ps:应该注意的是，iss并不是一种类似cin的媒介，它无法接受键盘的输入，只能从文件中读取或者预添加</p>
+<h2 id="temsplate">temsplate&lt;&gt;</h2>
 <h3 id="函数类模板">函数类模板</h3>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">template</span>&lt;<span class="keyword">typename</span> T1, <span class="keyword">typename</span> T2&gt;</span></span><br><span class="line"><span class="function">T1 <span class="title">func</span><span class="params">(T2 val)</span></span>&#123;</span><br><span class="line">    <span class="comment">//body</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>例子：<br>
