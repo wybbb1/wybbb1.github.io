@@ -147,6 +147,68 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2024/07/24/web_development/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.jpg">
+      <meta itemprop="name" content="wybbb">
+      <meta itemprop="description" content="hello world!">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="wyb的blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2024/07/24/web_development/" class="post-title-link" itemprop="url">web_development</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2024-07-24 16:46:13 / 修改时间：17:15:46" itemprop="dateCreated datePublished" datetime="2024-07-24T16:46:13+08:00">2024-07-24</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="HTML">HTML</h2>
+<p>————网站骨架</p>
+<h2 id="CSS">CSS</h2>
+<p>————网站皮囊</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="http://example.com/2024/06/04/machine-learning/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -178,7 +240,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2024-07-24 11:52:41" itemprop="dateModified" datetime="2024-07-24T11:52:41+08:00">2024-07-24</time>
+                <time title="修改时间：2024-07-24 16:54:53" itemprop="dateModified" datetime="2024-07-24T16:54:53+08:00">2024-07-24</time>
               </span>
 
           
@@ -192,13 +254,26 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h2 id="supervised-learning"><a href="#supervised-learning" class="headerlink" title="supervised learning"></a>supervised learning</h2><h3 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h3><p>通常是给出一定量的输入和相对应的输出数据，让AI拟合出符合期望的结果。</p>
-<h3 id="实现"><a href="#实现" class="headerlink" title="实现"></a>实现</h3><script type="math/tex; mode=display">f(x)_{w, b} = wx+b</script><script type="math/tex; mode=display">j(w, b) = \sum_{i=1}^{n} (f(x)_{w,b}-y_i)^2</script><p>利用最小二乘法计算出代价函数关于w、b的代价函数 j(w, b)，由于代价函数越小则拟合程度越高，所以通过梯度下降来逐渐改变w、b，使他们取得最合适的值，拟合出最精确的预测函数。</p>
-<h4 id="梯度下降"><a href="#梯度下降" class="headerlink" title="梯度下降"></a>梯度下降</h4><p><img src="image.png" alt="梯度下降"></p>
-<script type="math/tex; mode=display">
-w_{new} = w_{old} - \alpha*\frac{ {\rm \partial}j(w, b)} { {\rm \partial}w}</script><script type="math/tex; mode=display">
-b_{new} = b_{old} - \alpha*\frac{ {\rm \partial}j(w, b)} { {\rm \partial}b}</script><h4 id="学习率"><a href="#学习率" class="headerlink" title="学习率"></a>学习率</h4><p>学习率 $\alpha$ 在监督学习中起到了至关重要的作用，其值的设定很大程度上影响着预测函数。</p>
-<h2 id="unsupervised-learning"><a href="#unsupervised-learning" class="headerlink" title="unsupervised learning"></a>unsupervised learning</h2><h3 id="概念-1"><a href="#概念-1" class="headerlink" title="概念"></a>概念</h3><p>通常是给出一定量的输入数据，让AI聚类分析。</p>
+          <h2 id="supervised-learning">supervised learning</h2>
+<h3 id="概念">概念</h3>
+<p>通常是给出一定量的输入和相对应的输出数据，让AI拟合出符合期望的结果。</p>
+<h3 id="实现">实现</h3>
+<p>$$f(x)<em>{w, b} = wx+b$$<br>
+$$j(w, b) = \sum</em>{i=1}^{n} (f(x)_{w,b}-y_i)^2$$<br>
+利用最小二乘法计算出代价函数关于w、b的代价函数 j(w, b)，由于代价函数越小则拟合程度越高，所以通过梯度下降来逐渐改变w、b，使他们取得最合适的值，拟合出最精确的预测函数。</p>
+<h4 id="梯度下降">梯度下降</h4>
+<p><img src="_images/grad_descent.png" alt="梯度下降"><br>
+$$<br>
+w_{new} = w_{old} - \alpha*\frac{ {\rm \partial}j(w, b)} { {\rm \partial}w}<br>
+$$<br>
+$$<br>
+b_{new} = b_{old} - \alpha*\frac{ {\rm \partial}j(w, b)} { {\rm \partial}b}<br>
+$$</p>
+<h4 id="学习率">学习率</h4>
+<p>学习率 $\alpha$ 在监督学习中起到了至关重要的作用，其值的设定很大程度上影响着预测函数。</p>
+<h2 id="unsupervised-learning">unsupervised learning</h2>
+<h3 id="概念-2">概念</h3>
+<p>通常是给出一定量的输入数据，让AI聚类分析。</p>
 
       
     </div>
@@ -474,12 +549,12 @@ auto func = [作用域内要传入的值] （参数）-&gt; 返回类型{<br>
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">3</span>
+          <span class="site-state-item-count">4</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
       <div class="site-state-item site-state-tags">
-        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-count">4</span>
         <span class="site-state-item-name">标签</span>
       </div>
   </nav>
