@@ -1,0 +1,16 @@
+# 项目链接
+projects_url: https://github.com/wybbb1
+
+# 导航菜单
+nav:
+  home: /
+  about: /about/
+  articles: /archives/
+  projects: https://github.com/wybbb1
+
+# 社交链接
+social_links:
+  - icon: github
+    link: https://github.com/wybbb1
+  - icon: mail
+    link: mailto:rainbotwyb@163.com
