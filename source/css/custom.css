@@ -8,14 +8,20 @@ code, pre, .highlight {
 }
 
 /* 增强代码块注释可见性 */
+.comment {
+  color: #2c5282 !important; /* 深蓝灰色，更清晰 */
+  font-weight: 500 !important;
+  opacity: 1 !important;
+}
+
 .highlight .comment,
 .highlight .c,
 .highlight .c1,
 .highlight .cm,
 .hljs-comment {
-  color: #5a5a5a !important; /* 深灰色，更易读 */
-  font-style: italic;
-  opacity: 0.9 !important;
+  color: #2c5282 !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
 }
 
 /* 代码块整体样式优化 */
