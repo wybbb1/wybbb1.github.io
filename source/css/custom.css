@@ -6,3 +6,23 @@ body {
 code, pre, .highlight {
   font-family: "Consolas", "Monaco", "Courier New", "Source Code Pro", monospace !important;
 }
+
+/* 增强代码块注释可见性 */
+.highlight .comment,
+.highlight .c,
+.highlight .c1,
+.highlight .cm,
+.hljs-comment {
+  color: #5a5a5a !important; /* 深灰色，更易读 */
+  font-style: italic;
+  opacity: 0.9 !important;
+}
+
+/* 代码块整体样式优化 */
+.highlight {
+  line-height: 1.6 !important;
+}
+
+.highlight pre {
+  padding: 1em !important;
+}
