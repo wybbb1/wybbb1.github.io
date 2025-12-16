@@ -17,3 +17,6 @@ social_links:
     link: mailto:rainbotwyb@163.com
 
 colorscheme: light
+
+# 自定义CSS注入（用于覆盖字体等样式）
+custom_css: /css/custom.css
