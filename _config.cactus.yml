@@ -4,10 +4,8 @@ projects_url: https://github.com/wybbb1
 # 导航菜单
 nav:
   home: /
-  about: /about/
   articles: /archives/
   categories: /categories/
-  projects: https://github.com/wybbb1
 
 # 社交链接
 social_links:
