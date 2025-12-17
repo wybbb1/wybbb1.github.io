@@ -247,10 +247,8 @@ public boolean tryLock() {
             Collections.singletonList(getRawName()), unit.toMillis(leaseTime), getLockName(threadId));
 }
 ```
-*注意事项*
-```md
+**注意事项**
 - 如果leaseTime参数小于等于0,Redisson会启动看门狗机制,自动续期锁的过期时间。如果设置了正数leaseTime,则不会启动看门狗,锁会在指定时间后自动过期。
-```
 
 ```java
 @Override
