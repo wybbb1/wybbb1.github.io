@@ -129,6 +129,9 @@ try {
 ```
 
 #### getLock()
+![RedissonLock类相关继承关系](../images/posts/redis-distributed-lock/Hierarchy.png)
+<p class="img-caption">RedissonLock类相关继承关系</p>
+
 以上代码中的`getLock("myLock")`为例，表示获取一个名为"myLock"的分布式锁实例。如果该锁不存在，Redisson会自动创建一个新的锁实例。
 ```java
 // ================= Redisson类 ==================
@@ -163,7 +166,6 @@ public final String getRawName() {
     return name;
 }
 ```
-![RedissonLock类相关继承关系](../images/posts/redis-distributed-lock/Hierarchy.png)
 
 #### tryLock()
 `tryLock(long waitTime, long leaseTime, TimeUnit unit)`方法尝试获取锁,等待时间为waitTime,锁过期时间为leaseTime。

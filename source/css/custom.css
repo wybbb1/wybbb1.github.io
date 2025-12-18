@@ -23,3 +23,24 @@ code, pre, .highlight {
 .highlight pre {
   padding: 1em !important;
 }
+
+/* 图片标注样式 */
+.img-caption {
+  text-align: center;
+  color: #666;
+  font-size: 14px;
+  margin-top: -10px;
+  margin-bottom: 20px;
+  font-style: italic;
+}
+
+.img-caption a {
+  color: #0066cc;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.img-caption a:hover {
+  color: #004499;
+  text-decoration: underline;
+}
