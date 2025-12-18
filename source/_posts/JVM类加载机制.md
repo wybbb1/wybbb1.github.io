@@ -20,6 +20,7 @@ categories:
 > - 通过类的全限定名获取类的二进制字节流。
 > - 将这个字节流所代表的静态存储结构转化为方法区的运行时数据结构。
 > - 在Java堆中生成一个代表这个类的java.lang.Class对象，作为方法区中类数据的访问入口。
+
 以上三个任务皆由类加载器（ClassLoader）完成。
 ![](../images/posts/jvm-classloder/struct.png)
 <p class="img-caption">图片来源：<a href="https://blog.csdn.net/javazejian/article/details/73413292" target="_blank">CSDN博客</a></p>
