@@ -420,3 +420,55 @@ protected RFuture<Boolean> unlockInnerAsync(long threadId) {
 ```
 
 ### Redis的Pub/Sub机制
+
+#### 使用
+```bash
+publish channel_name message
+
+subscribe channel_name
+
+unsubscribe channel_name
+
+# 退订所有频道
+unsubscribe
+```
+
+以下是执行实例：
+
+订阅channel_name频道
+```bash
+root:0>subscribe lock_channel
+切换到推送/订阅模式，关闭标签页来停止接收信息。
+1) "subscribe"
+2) "lock_channel"
+3) "1"
+```
+
+发布消息到channel_name频道
+```bash
+root:0>publish lock_channel 1
+"1"
+root:0>publish lock_channel msg
+"1"
+```
+
+自动接收消息
+```bash
+root:0>subscribe lock_channel
+切换到推送/订阅模式，关闭标签页来停止接收信息。
+1) "subscribe"
+2) "lock_channel"
+3) "1"
+
+1) "message"
+2) "lock_channel"
+3) "1"
+
+1) "message"
+2) "lock_channel"
+3) "msg"
+```
+
+#### 注意事项
+- 订阅者在订阅频道后会进入阻塞状态，无法执行其他命令，直到取消订阅。
+- Redis的Pub/Sub机制不保证消息的持久化和可靠传递，订阅者在断开连接后将无法接收到发布的消息。而且，在一些特定情况下，可能会出现消息丢失的情况，例如网络故障、Redis服务器宕机等。
