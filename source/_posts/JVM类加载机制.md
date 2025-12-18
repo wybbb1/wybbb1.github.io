@@ -10,7 +10,7 @@ categories:
 当Java源文件被javac编译后，会生成一个或多个字节码文件（.class文件）。这些字节码文件并不能被直接执行，必须通过Java虚拟机（JVM）来加载和解释执行。类加载是**JVM将类的字节码文件加载到内存**中的过程。
 
 流程大致如下：
-1. **加载（Loading）**：JVM通过类加载器（ClassLoader）
+1. **加载（Loading）**：JVM通过类加载器（ClassLoader）读取类的字节码文件，并将其加载到内存中。
 2. **连接（Linking）**：包括验证（Verification）、准备（Preparation）和解析（Resolution）三个步骤。
 3. **初始化（Initialization）**：执行类的初始化代码，包括静态变量的赋值和静态代码块的执行。
 
