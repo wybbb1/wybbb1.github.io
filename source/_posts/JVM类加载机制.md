@@ -96,3 +96,94 @@ public static final int MAX_COUNT = 100;
 ### 解析
 >解析阶段是将类中的符号引用转换为直接引用的过程。
 
+- 符号引用：是以字符串形式表示的引用，比如类名、接口名、字段名和方法名等。符号引用的字面量在不同虚拟机中是一致的。
+- 直接引用：是指向内存地址的引用，比如指向方法区中某个类的具体内存地址。
+
+### 初始化
+>类的初始化阶段是类加载过程的最后一个步骤，之前介绍的几个类加载的动作里，除了在加载阶段用户应用程序可以通过自定义类加载器的方式局部参与外，其余动作都完全由Java虚拟机来主导控制。直到初始化阶段，Java虚拟机才真正开始执行类中编写的Java程序代码，将主导权移交给应用程序。
+>初始化阶段就是执行类构造器<clinit>()方法的过程。类构造器<clinit>()方法是由编译器自动收集类中的所有类变量的赋值动作和静态代码块（static{}块）中的语句合并产生的。
+
+该部分较多记诵部分，此处建议阅读《深入理解Java虚拟机（第3版）》第七章节。注意重点区分接口和类执行<clinit>()方法的区别。
+
+## 类加载器以及双亲委派
+
+书中有一段代码很有趣
+```java
+public class ClassLoaderTest {
+    public static void main(String[] args) throws Exception {
+        ClassLoader myLoader = new ClassLoader() {
+            @Override
+            protected Class<?> loadClass(String name) throws ClassNotFoundException {
+                try{
+                    String fileName = name.substring(name.lastIndexOf(".") + 1) + ".class";
+                    InputStream is = getClass().getResourceAsStream(fileName);
+                    if (is == null) {
+                        return super.loadClass(name);
+                    }
+                    byte[] b = new byte[is.available()];
+                    is.read(b);
+                    return defineClass(name, b, 0, b.length);
+                } catch {
+                    throw new ClassNotFoundException(name);
+                }
+            }
+        };
+        Object obj = myLoader.loadClass("org.fenixsoft.classloading.ClassLoaderTest").newInstance();
+        System.out.println(obj.getClass());
+        System.out.println(obj instanceof org.fenixsoft.classloading.ClassLoaderTest);
+    }
+}
+```
+书中说`System.out.println(obj instanceof org.fenixsoft.classloading.ClassLoaderTest);`的输出将会是`false`，因为java虚拟机同时存在两个ClassLoaderTest类，一个是应用程序类加载器加载的，一个是自定义的类加载器加载的。而**不同类加载器加载的类即使类名相同，JVM也会认为它们是不同的类**。
+
+由于双亲委派模型要求：当一个类加载器收到类加载请求时，它首先不会尝试自己去加载这个类，而是把请求委派给父类加载器去完成，只有当父加载器反馈无法完成加载（找不到类）时，子加载器才会尝试自己去加载。
+
+以上代码显然是对该机制的一种破坏，如果不想破坏双亲委派模型，可以将`MyClassLoader`改为：
+```java
+public class MyClassLoader extends ClassLoader {
+    // 为了避免重写 loadClass 可能对双亲委派机制的破坏。重写 findClass 可以确保只有当父类加载器（AppClassLoader、ExtClassLoader等）都表示“这个类我不认识”时，JVM 才会调用 findClass 来用 MyClassLoader 加载类。
+    @Override
+    protected Class<?> findClass(String name) throws ClassNotFoundException {
+        // 1. 根据类名读取字节码（只需关注这一步）
+        byte[] data = loadClassData(name); 
+        if (data == null) {
+            throw new ClassNotFoundException();
+        }
+        // 2. 调用 defineClass 将字节数组转为 Class 对象
+        return defineClass(name, data, 0, data.length);
+    }
+
+    private byte[] loadClassData(String name) {
+        // 这里写你自己的逻辑：从磁盘读、从网络下、或者解密字节码
+        return null; 
+    }
+}
+```
+结合源码分析，`loadClass` 方法的实现如下：
+```java
+protected Class<?> loadClass(String name, boolean resolve)
+        throws ClassNotFoundException {
+    // 1. 检查该类是否已经被加载过了
+    Class<?> c = findLoadedClass(name);
+    if (c == null) {
+        try {
+            // 2. 委派给父类加载器加载
+            if (parent != null) {
+                c = parent.loadClass(name, false);
+            } else {
+                c = getBootstrapClassLoader().loadClass(name);
+            }
+        } catch (ClassNotFoundException e) {
+            // 3. 父类加载器无法加载，调用子类的 findClass 方法加载
+            c = findClass(name);
+        }
+    }
+    if (resolve) {
+        resolveClass(c);
+    }
+    return c;
+}
+```
+因此只重写 `findClass` 方法可以确保双亲委派机制不被破坏。
+
+
