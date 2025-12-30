@@ -1,7 +1,7 @@
 ---
 title: JVM类加载机制
 date: 2025-12-18
-updated: 2025-12-18
+updated: 2025-12-21
 categories: 
   - JVM
 ---
