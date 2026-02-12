@@ -6,7 +6,7 @@ categories:
   - AI
 ---
 
-# RAG 笔记
+# Vector RAG
 
 ## 概览
 > A typical RAG application has two main components:
@@ -48,3 +48,6 @@ categories:
 
 ## 生成（generation）
 生成是将用户查询以及检索重排后的结果一并发给 llm 让其生成答案的过程。
+
+# Graph RAG
+相比于 Vector RAG，Graph RAG 的检索对象是图谱数据，数据以图结构进行存储，节点代表实体，边代表实体之间的关系。
