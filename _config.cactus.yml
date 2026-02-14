@@ -7,13 +7,6 @@ nav:
   articles: /archives/
   categories: /categories/
 
-# 语言配置覆盖
-language:
-  nav:
-    articles: Archives
-  index:
-    articles: Archives
-
 # 社交链接
 social_links:
   - icon: github
