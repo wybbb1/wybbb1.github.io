@@ -1,7 +1,6 @@
 ---
 title: Redis分布式锁
 date: 2025-12-16
-updated: 2025-12-17
 categories: 
   - Redis
 ---

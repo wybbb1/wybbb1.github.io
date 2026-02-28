@@ -1,7 +1,6 @@
 ---
 title: MySQL查询
 date: 2025-11-30
-updated: 2026-1-05
 categories: 
   - MySQL
 ---
