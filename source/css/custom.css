@@ -65,9 +65,9 @@ code, pre, .highlight {
 }
 #header-post #toc .toc-level-4 {
   color: #525252;
-  font-size: 0.8rem !important;
+  font-size: 0.7rem !important;
 }
 #header-post #toc .toc-level-5 {
   display: none;
-  font-size: 0.7rem !important;
+  font-size: 0.6rem !important;
 }
