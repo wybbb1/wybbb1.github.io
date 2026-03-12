@@ -21,3 +21,6 @@ custom_css: /css/custom.css
 
 post:
   updated: false
+
+posts_overview:
+  show_all_posts: true
