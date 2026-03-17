@@ -71,3 +71,77 @@ code, pre, .highlight {
   display: none;
   font-size: 0.6rem !important;
 }
+
+/* 术语悬浮注释样式 */
+.term-tooltip {
+  position: relative;
+  display: inline-block;
+  padding: 0 2px;
+  border-radius: 3px;
+  border-bottom: 1px dashed #6e7480;
+  background: rgba(99, 107, 120, 0.1);
+  color: #262b33;
+  font-weight: 600;
+  cursor: help;
+  letter-spacing: 0.01em;
+  transition: color 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+}
+
+.term-tooltip:hover,
+.term-tooltip:focus {
+  color: #171b21;
+  border-bottom-color: #434a55;
+  background: rgba(99, 107, 120, 0.16);
+  outline: none;
+}
+
+.term-tooltip::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 8px);
+  transform: translateX(-50%) translateY(4px);
+  width: max-content;
+  max-width: min(380px, 84vw);
+  padding: 10px 12px;
+  border: 1px solid #d6d9de;
+  border-radius: 4px;
+  background: #fbfbf8;
+  color: #2b3038;
+  font-size: 13px;
+  line-height: 1.6;
+  font-family: Georgia, "Times New Roman", "Noto Serif SC", "Songti SC", serif;
+  text-align: left;
+  white-space: normal;
+  box-shadow: 0 4px 14px rgba(19, 25, 33, 0.12);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.18s ease, transform 0.18s ease;
+  z-index: 99;
+}
+
+.term-tooltip::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 1px);
+  transform: translateX(-50%);
+  border: 7px solid transparent;
+  border-top-color: #d6d9de;
+  opacity: 0;
+  transition: opacity 0.18s ease;
+  pointer-events: none;
+  z-index: 99;
+}
+
+.term-tooltip:hover::after,
+.term-tooltip:focus::after,
+.term-tooltip:hover::before,
+.term-tooltip:focus::before {
+  opacity: 1;
+}
+
+.term-tooltip:hover::after,
+.term-tooltip:focus::after {
+  transform: translateX(-50%) translateY(0);
+}

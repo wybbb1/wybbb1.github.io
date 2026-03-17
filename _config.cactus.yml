@@ -24,3 +24,6 @@ post:
 
 posts_overview:
   show_all_posts: true
+
+mathjax:
+  enabled: true
