@@ -300,7 +300,7 @@ public class CachePipeline {
 
 ### 基本使用
 容错框架一般有以下几个核心功能：熔断、限流、重试、隔离。resilience4j将这些功能拆分成了不同的模块，我们可以根据需要选择性地引入依赖。
-如果想要学习容错框架的使用，详见{% post_link 容错框架核心功能 容错框架核心功能 %}
+如果想要学习容错框架的使用，详见[容错框架核心功能](post.html?file=%E5%AE%B9%E9%94%99%E6%A1%86%E6%9E%B6%E6%A0%B8%E5%BF%83%E5%8A%9F%E8%83%BD.md)
 ```xml
 <dependency>
     <groupId>io.github.resilience4j</groupId>
