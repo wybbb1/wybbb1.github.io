@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>项目 - wybbb1</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="index.html" class="nav-logo">wybbb1</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="blog.html">博客</a></li>
+        <li><a href="projects.html" class="active">项目</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="page-content">
+    <div class="container">
+      <h1 class="page-title">项目</h1>
+      <p class="page-desc">我的 GitHub 开源项目</p>
+
+      <div id="lang-filters" class="filter-tabs"></div>
+
+      <div id="project-list">
+        <div class="loading">加载中...</div>
+      </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p>&copy; 2026 wybbb1. Built with HTML/CSS/JS.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      loadProjects();
+    });
+  </script>
+</body>
+</html>
