@@ -1060,6 +1060,11 @@ img {
   color: #93c5fd;
 }
 
+[data-theme="dark"] .post-body pre code {
+  background: none;
+  color: inherit;
+}
+
 [data-theme="dark"] .post-body th {
   background: var(--gray-100);
 }
