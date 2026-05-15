@@ -14,6 +14,19 @@ const LANG_COLORS = {
   C: '#555555',
 };
 
+const CATEGORY_COLORS = {
+  AI:     { bg: '#f3e8ff', text: '#7c3aed', border: '#c084fc' },
+  Redis:  { bg: '#ffe4e6', text: '#e11d48', border: '#fb7185' },
+  JVM:    { bg: '#fff7ed', text: '#ea580c', border: '#fb923c' },
+  MySQL:  { bg: '#ecfeff', text: '#0891b2', border: '#22d3ee' },
+  实战:   { bg: '#ecfdf5', text: '#059669', border: '#34d399' },
+  CS:     { bg: '#fefce8', text: '#ca8a04', border: '#facc15' },
+};
+
+function getCategoryColor(cat) {
+  return CATEGORY_COLORS[cat] || { bg: '#dbeafe', text: '#2563eb', border: '#60a5fa' };
+}
+
 function formatDate(dateStr) {
   const d = new Date(dateStr);
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
@@ -29,15 +42,17 @@ async function loadRecentPosts(count) {
     const posts = await res.json();
     const recent = posts.slice(0, count || 3);
 
-    container.innerHTML = recent.map(post => `
-      <a href="post.html?file=${encodeURIComponent(post.file)}" class="card">
+    container.innerHTML = recent.map(post => {
+      const c = getCategoryColor(post.category);
+      return `
+      <a href="post.html?file=${encodeURIComponent(post.file)}" class="card" style="border-left: 3px solid ${c.border}">
         <h3>${post.title}</h3>
-        <span class="card-category">${post.category}</span>
+        <span class="card-category" style="background:${c.bg};color:${c.text}">${post.category}</span>
         <div class="card-meta">
           <span>${formatDate(post.date)}</span>
         </div>
       </a>
-    `).join('');
+    `}).join('');
   } catch (e) {
     container.innerHTML = '<div class="empty">加载失败</div>';
   }
@@ -58,13 +73,27 @@ async function loadBlogList() {
     const categories = [...new Set(allPosts.map(p => p.category))];
 
     filtersContainer.innerHTML = `<button class="filter-tab active" data-cat="all">全部</button>` +
-      categories.map(cat => `<button class="filter-tab" data-cat="${cat}">${cat}</button>`).join('');
+      categories.map(cat => {
+        const c = getCategoryColor(cat);
+        return `<button class="filter-tab" data-cat="${cat}" style="--tab-active:${c.text};--tab-hover:${c.border}">${cat}</button>`;
+      }).join('');
 
     filtersContainer.addEventListener('click', e => {
       if (!e.target.classList.contains('filter-tab')) return;
-      filtersContainer.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+      filtersContainer.querySelectorAll('.filter-tab').forEach(t => {
+        t.classList.remove('active');
+        t.style.background = '';
+        t.style.borderColor = '';
+        t.style.color = '';
+      });
       e.target.classList.add('active');
-      renderBlogList(e.target.dataset.cat);
+      const cat = e.target.dataset.cat;
+      if (cat !== 'all') {
+        const c = getCategoryColor(cat);
+        e.target.style.background = c.text;
+        e.target.style.borderColor = c.text;
+      }
+      renderBlogList(cat);
     });
 
     renderBlogList('all');
@@ -82,12 +111,17 @@ function renderBlogList(category) {
     return;
   }
 
-  container.innerHTML = filtered.map(post => `
+  container.innerHTML = filtered.map(post => {
+    const c = getCategoryColor(post.category);
+    return `
     <div class="blog-item">
       <a href="post.html?file=${encodeURIComponent(post.file)}">${post.title}</a>
-      <span class="blog-item-date">${formatDate(post.date)}</span>
+      <div class="blog-item-right">
+        <span class="blog-item-cat" style="background:${c.bg};color:${c.text}">${post.category}</span>
+        <span class="blog-item-date">${formatDate(post.date)}</span>
+      </div>
     </div>
-  `).join('');
+  `}).join('');
 }
 
 // ========== Post: Render Markdown (post.html) ==========
@@ -108,8 +142,14 @@ async function loadPost() {
 
     document.getElementById('post-title').textContent = title || file;
     document.getElementById('post-date').textContent = date ? formatDate(date) : '';
-    document.getElementById('post-category').textContent = category || '';
     document.title = `${title || '文章'} - wybbb1`;
+
+    const catEl = document.getElementById('post-category');
+    if (category) {
+      const c = getCategoryColor(category);
+      catEl.textContent = category;
+      catEl.style.background = c.text;
+    }
 
     const readingTime = Math.max(1, Math.ceil(content.replace(/[#*`\[\]()>_-]/g, '').length / 400));
     document.getElementById('post-reading-time').textContent = `约 ${readingTime} 分钟阅读`;

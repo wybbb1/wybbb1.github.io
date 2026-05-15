@@ -127,6 +127,17 @@ img {
   overflow: hidden;
 }
 
+.hero::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--blue);
+  opacity: 0.2;
+}
+
 #particle-canvas {
   position: absolute;
   top: 0;
@@ -244,6 +255,20 @@ img {
   letter-spacing: 0.1em;
   color: var(--gray-400);
   margin-bottom: 24px;
+  padding-left: 14px;
+  position: relative;
+}
+
+.section-title::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--blue);
 }
 
 /* === Tags === */
@@ -266,10 +291,11 @@ img {
 }
 
 .tag:hover {
-  background: var(--blue-light);
-  color: var(--blue);
+  background: color-mix(in srgb, var(--tag-accent, var(--blue)) 10%, white);
+  color: var(--tag-accent, var(--blue));
+  border-color: color-mix(in srgb, var(--tag-accent, var(--blue)) 40%, white);
   transform: translateY(-2px);
-  box-shadow: 0 2px 8px rgba(37, 99, 235, 0.15);
+  box-shadow: 0 2px 8px color-mix(in srgb, var(--tag-accent, var(--blue)) 15%, transparent);
 }
 
 /* === Cards === */
@@ -395,10 +421,11 @@ img {
 .blog-item {
   display: flex;
   justify-content: space-between;
-  align-items: baseline;
+  align-items: center;
   padding: 16px 0;
   border-bottom: 1px solid var(--gray-100);
   transition: all 0.15s;
+  gap: 16px;
 }
 
 .blog-item:hover {
@@ -409,25 +436,34 @@ img {
   border-bottom: none;
 }
 
-.blog-item-title {
-  font-size: 1rem;
-  font-weight: 500;
-  color: var(--black);
-}
-
 .blog-item a {
   color: inherit;
+  font-weight: 500;
 }
 
 .blog-item a:hover {
   color: var(--blue);
 }
 
+.blog-item-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.blog-item-cat {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 3px;
+  font-size: 0.7rem;
+  font-weight: 600;
+}
+
 .blog-item-date {
   font-size: 0.82rem;
   color: var(--gray-400);
   white-space: nowrap;
-  margin-left: 24px;
 }
 
 /* === Filter Tabs === */
@@ -555,7 +591,7 @@ img {
 }
 
 .toc-nav {
-  border-left: 1px solid var(--gray-200);
+  border-left: 2px solid var(--gray-200);
   padding-left: 12px;
 }
 
@@ -587,6 +623,17 @@ img {
 .toc-nav a.active {
   color: var(--blue);
   font-weight: 600;
+  position: relative;
+}
+
+.toc-nav a.active::before {
+  content: '';
+  position: absolute;
+  left: -14px;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: var(--blue);
 }
 
 .toc-nav .toc-h3 {
