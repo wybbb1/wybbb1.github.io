@@ -23,6 +23,33 @@
   --font-mono: "JetBrains Mono", "Fira Code", "Consolas", monospace;
   --max-width: 960px;
   --nav-height: 60px;
+  --bg: #fafafa;
+  --bg-card: #ffffff;
+  --bg-nav: rgba(250, 250, 250, 0.9);
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --text-muted: #9ca3af;
+  --border: #e5e7eb;
+  --border-light: #f3f4f6;
+}
+
+[data-theme="dark"] {
+  --bg: #0b1120;
+  --bg-card: #162032;
+  --bg-nav: rgba(11, 17, 32, 0.9);
+  --text-primary: #e2e8f0;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  --border: #1e3a5f;
+  --border-light: #162032;
+  --black: #e2e8f0;
+  --white: #0b1120;
+  --gray-100: #1e293b;
+  --gray-200: #1e3a5f;
+  --gray-400: #64748b;
+  --gray-500: #94a3b8;
+  --gray-700: #cbd5e1;
+  --gray-900: #f1f5f9;
 }
 
 html {
@@ -32,10 +59,11 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: var(--gray-900);
-  background: var(--white);
+  color: var(--text-primary);
+  background: var(--bg);
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
+  transition: background 0.3s, color 0.3s;
 }
 
 a {
@@ -60,9 +88,9 @@ img {
   left: 0;
   right: 0;
   height: var(--nav-height);
-  background: rgba(250, 250, 250, 0.9);
+  background: var(--bg-nav);
   backdrop-filter: blur(10px);
-  border-bottom: 1px solid var(--gray-200);
+  border-bottom: 1px solid var(--border);
   z-index: 100;
   display: flex;
   align-items: center;
@@ -281,7 +309,7 @@ img {
 .tag {
   display: inline-block;
   padding: 4px 12px;
-  background: #fff;
+  background: var(--bg-card);
   border: 1px solid var(--gray-200);
   border-radius: 4px;
   font-size: 0.82rem;
@@ -307,7 +335,7 @@ img {
 
 .card {
   padding: 24px;
-  background: #fff;
+  background: var(--bg-card);
   border: 1px solid var(--gray-200);
   border-radius: 8px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -358,7 +386,7 @@ img {
 /* === Project Card === */
 .project-card {
   padding: 20px 24px;
-  background: #fff;
+  background: var(--bg-card);
   border: 1px solid var(--gray-200);
   border-radius: 8px;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
@@ -517,7 +545,7 @@ img {
   align-items: center;
   gap: 16px;
   padding: 14px 20px;
-  background: #fff;
+  background: var(--bg-card);
   border: 1px solid var(--gray-200);
   border-radius: 8px;
 }
@@ -946,4 +974,100 @@ img {
 .nav-links a:hover::after,
 .nav-links a.active::after {
   width: 100%;
+}
+
+/* === Theme Toggle === */
+.theme-toggle {
+  width: 44px;
+  height: 24px;
+  background: var(--gray-200);
+  border-radius: 12px;
+  position: relative;
+  cursor: pointer;
+  border: none;
+  padding: 0;
+  transition: background 0.3s;
+  flex-shrink: 0;
+}
+
+.theme-toggle:hover {
+  background: var(--blue-light);
+}
+
+.theme-toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 18px;
+  height: 18px;
+  background: var(--blue);
+  border-radius: 50%;
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), background 0.3s;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+[data-theme="dark"] .theme-toggle {
+  background: #1e3a5f;
+}
+
+[data-theme="dark"] .theme-toggle::after {
+  transform: translateX(20px);
+  background: #7dd3fc;
+}
+
+.theme-toggle .toggle-icon {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 12px;
+  transition: opacity 0.3s;
+}
+
+.theme-toggle .icon-sun {
+  left: 6px;
+  opacity: 1;
+  color: #fbbf24;
+}
+
+.theme-toggle .icon-moon {
+  right: 6px;
+  opacity: 0;
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .theme-toggle .icon-sun {
+  opacity: 0;
+}
+
+[data-theme="dark"] .theme-toggle .icon-moon {
+  opacity: 1;
+}
+
+/* === Dark Mode Overrides === */
+[data-theme="dark"] .hero::after {
+  opacity: 0.4;
+}
+
+[data-theme="dark"] .tag:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="dark"] .post-body pre {
+  background: #0f172a;
+  border: 1px solid var(--border);
+}
+
+[data-theme="dark"] .post-body blockquote {
+  background: rgba(37, 99, 235, 0.1);
+}
+
+[data-theme="dark"] .post-body code {
+  background: #1e293b;
+  color: #93c5fd;
+}
+
+[data-theme="dark"] .post-body th {
+  background: var(--gray-100);
 }

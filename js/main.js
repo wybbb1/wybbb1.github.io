@@ -1,5 +1,17 @@
 const GITHUB_USERNAME = 'wybbb1';
 
+// ========== Theme Toggle ==========
+function initTheme() {
+  const btn = document.getElementById('theme-toggle');
+  if (!btn) return;
+
+  btn.addEventListener('click', () => {
+    const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+    document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
+    localStorage.setItem('theme', isDark ? 'light' : 'dark');
+  });
+}
+
 const LANG_COLORS = {
   Java: '#b07219',
   JavaScript: '#f1e05a',
