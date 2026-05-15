@@ -7,10 +7,11 @@
   <link rel="stylesheet" href="css/style.css">
   <script>const t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');</script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/styles/github.min.css">
-  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/styles/github-dark.min.css" disabled>
-  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
-  <script>if(document.documentElement.getAttribute('data-theme')==='dark'){document.getElementById('hljs-light').disabled=true;document.getElementById('hljs-dark').disabled=false;}</script>
+  <script>window.Prism=window.Prism||{};Prism.manual=true;</script>
+  <link id="prism-light" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism.min.css">
+  <link id="prism-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css" disabled>
+  <script src="https://cdn.jsdelivr.net/combine/npm/prismjs@1.29.0/prism.min.js,npm/prismjs@1.29.0/components/prism-java.min.js,npm/prismjs@1.29.0/components/prism-python.min.js,npm/prismjs@1.29.0/components/prism-sql.min.js,npm/prismjs@1.29.0/components/prism-bash.min.js,npm/prismjs@1.29.0/plugins/autoloader/prism-autoloader.min.js"></script>
+  <script>if(Prism.plugins.autoloader)Prism.plugins.autoloader.languages_path='https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/';if(document.documentElement.getAttribute('data-theme')==='dark'){document.getElementById('prism-light').disabled=true;document.getElementById('prism-dark').disabled=false;}</script>
 </head>
 <body>
   <nav class="nav">

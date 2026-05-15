@@ -731,19 +731,12 @@ img {
 }
 
 .post-body pre {
-  padding: 20px;
   border-radius: 8px;
-  overflow-x: auto;
   margin-bottom: 1.2em;
-  line-height: 1.5;
-  background: #f6f8fa;
-  border: 1px solid var(--gray-200);
 }
 
 .post-body pre code {
-  padding: 0;
   font-size: 0.88rem;
-  color: inherit;
   background: none;
 }
 
@@ -1055,7 +1048,6 @@ img {
 }
 
 [data-theme="dark"] .post-body pre {
-  background: #0d1117;
   border: 1px solid var(--border);
 }
 

@@ -5,13 +5,13 @@ function initTheme() {
   const btn = document.getElementById('theme-toggle');
   if (!btn) return;
 
-  syncHljsTheme();
+  syncPrismTheme();
 
   btn.addEventListener('click', () => {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
     localStorage.setItem('theme', isDark ? 'light' : 'dark');
-    syncHljsTheme();
+    syncPrismTheme();
   });
 }
 
@@ -42,9 +42,9 @@ function getCategoryColor(cat) {
   return CATEGORY_COLORS[cat] || { bg: '#dbeafe', text: '#2563eb', border: '#60a5fa' };
 }
 
-function syncHljsTheme() {
-  const light = document.getElementById('hljs-light');
-  const dark = document.getElementById('hljs-dark');
+function syncPrismTheme() {
+  const light = document.getElementById('prism-light');
+  const dark = document.getElementById('prism-dark');
   if (!light || !dark) return;
   const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
   light.disabled = isDark;
@@ -148,23 +148,15 @@ function renderBlogList(category) {
   `}).join('');
 }
 
-// ========== Marked + Highlight.js Integration ==========
+// ========== Marked + Prism.js Integration ==========
 if (typeof marked !== 'undefined') {
   marked.use({
     renderer: {
       code({ text, lang }) {
         const language = (lang || '').toLowerCase();
-        let highlighted;
-        if (typeof hljs !== 'undefined') {
-          try {
-            highlighted = hljs.highlight(text, { language: language || 'plaintext' }).value;
-          } catch {
-            highlighted = hljs.highlightAuto(text).value;
-          }
-        } else {
-          highlighted = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
-        }
-        return `<pre><code class="hljs language-${language}">${highlighted}</code></pre>`;
+        const escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const cls = language ? ` class="language-${language}"` : '';
+        return `<pre${cls}><code${cls}>${escaped}\n</code></pre>\n`;
       }
     }
   });
@@ -203,6 +195,10 @@ async function loadPost() {
     const html = marked.parse(content).replace(/\.\.\/images\//g, 'images/');
     const postBody = document.getElementById('post-body');
     postBody.innerHTML = html;
+
+    if (typeof Prism !== 'undefined') {
+      Prism.highlightAll();
+    }
 
     addHeadingIds(postBody);
     buildTOC(postBody);
