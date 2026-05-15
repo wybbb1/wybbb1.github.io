@@ -731,20 +731,20 @@ img {
 }
 
 .post-body pre {
-  background: var(--gray-900);
-  color: var(--gray-100);
   padding: 20px;
   border-radius: 8px;
   overflow-x: auto;
   margin-bottom: 1.2em;
   line-height: 1.5;
+  background: #f6f8fa;
+  border: 1px solid var(--gray-200);
 }
 
 .post-body pre code {
-  background: none;
   padding: 0;
-  color: inherit;
   font-size: 0.88rem;
+  color: inherit;
+  background: none;
 }
 
 .post-body table {
@@ -1055,7 +1055,7 @@ img {
 }
 
 [data-theme="dark"] .post-body pre {
-  background: #0f172a;
+  background: #0d1117;
   border: 1px solid var(--border);
 }
 

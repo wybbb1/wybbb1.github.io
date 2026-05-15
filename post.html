@@ -7,6 +7,10 @@
   <link rel="stylesheet" href="css/style.css">
   <script>const t=localStorage.getItem('theme');if(t==='dark'||(!t&&matchMedia('(prefers-color-scheme:dark)').matches))document.documentElement.setAttribute('data-theme','dark');</script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <link id="hljs-light" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/styles/github.min.css">
+  <link id="hljs-dark" rel="stylesheet" href="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/styles/github-dark.min.css" disabled>
+  <script src="https://cdn.jsdelivr.net/gh/highlightjs/cdn-release@11/build/highlight.min.js"></script>
+  <script>if(document.documentElement.getAttribute('data-theme')==='dark'){document.getElementById('hljs-light').disabled=true;document.getElementById('hljs-dark').disabled=false;}</script>
 </head>
 <body>
   <nav class="nav">
@@ -62,7 +66,7 @@
 
   <footer class="footer">
     <div class="container">
-      <p>&copy; 2026 wybbb1. Built with HTML/CSS/JS.</p>
+      <p>&copy; 2026 wybbb1</p>
     </div>
   </footer>
 

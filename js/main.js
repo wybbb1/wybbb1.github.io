@@ -5,10 +5,13 @@ function initTheme() {
   const btn = document.getElementById('theme-toggle');
   if (!btn) return;
 
+  syncHljsTheme();
+
   btn.addEventListener('click', () => {
     const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
     document.documentElement.setAttribute('data-theme', isDark ? '' : 'dark');
     localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    syncHljsTheme();
   });
 }
 
@@ -37,6 +40,15 @@ const CATEGORY_COLORS = {
 
 function getCategoryColor(cat) {
   return CATEGORY_COLORS[cat] || { bg: '#dbeafe', text: '#2563eb', border: '#60a5fa' };
+}
+
+function syncHljsTheme() {
+  const light = document.getElementById('hljs-light');
+  const dark = document.getElementById('hljs-dark');
+  if (!light || !dark) return;
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  light.disabled = isDark;
+  dark.disabled = !isDark;
 }
 
 function formatDate(dateStr) {
@@ -134,6 +146,28 @@ function renderBlogList(category) {
       </div>
     </div>
   `}).join('');
+}
+
+// ========== Marked + Highlight.js Integration ==========
+if (typeof marked !== 'undefined') {
+  marked.use({
+    renderer: {
+      code({ text, lang }) {
+        const language = (lang || '').toLowerCase();
+        let highlighted;
+        if (typeof hljs !== 'undefined') {
+          try {
+            highlighted = hljs.highlight(text, { language: language || 'plaintext' }).value;
+          } catch {
+            highlighted = hljs.highlightAuto(text).value;
+          }
+        } else {
+          highlighted = text.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        }
+        return `<pre><code class="hljs language-${language}">${highlighted}</code></pre>`;
+      }
+    }
+  });
 }
 
 // ========== Post: Render Markdown (post.html) ==========
